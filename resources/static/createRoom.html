@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Standard Meta -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Site Properties -->
+        <title>Grid Example - Semantic</title>
+
+        <link rel="stylesheet" type="text/css" href="lib/Semantic-UI-CSS-master/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    </head>
+
+    <body>
+        <div class="ui clearing segment">
+            <h3 class="ui right floated header">
+                <i class="user circle outline icon"></i>
+                <div class="content">
+                    <span id="userNameId">Jdoe</span>
+                    <div class="sub header"><span>5000</span>$</div>
+                </div>
+            </h3>
+
+            <h3 class="ui left floated header">
+                <div class="content">
+                    <i class="plus icon"></i>
+                    CREATE ROOM
+                    <div class="sub header">Create a room to play against other user</div>
+                </div>
+            </h3>
+        </div>
+
+
+        <div class="ui five column grid">
+            <div class="row"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column">
+                <form class="ui form" action="" method="GET">
+                    <h3 class="ui dividing header">Create a Room</h3>
+                    <div class="field">
+                        <label>Room Name</label>
+                        <input type="text" name="room-name" id="roomNameId" placeholder="First Name">
+                    </div>
+                    <div class="field">
+                        <label>Bet</label>
+                        <input type="text" name="bet-name" id="roomBetId" placeholder="Last Name">
+                    </div>
+
+
+                    <div class="ui buttons">
+                        <button class="ui button" id="cancelButtonId">Cancel</button>
+                        <div class="or"></div>
+                        <button class="ui positive  labeled icon button" id="createButtonId">
+                            <i class="plus icon"></i>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="./lib/jquery-3.3.1.min.js"></script>
+        <script src="./lib/Semantic-UI-CSS-master/semantic.js"></script>
+        <script src="./js/createRoom.js"></script> 
+
+    </body>
+</html>
