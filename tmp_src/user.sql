@@ -24,9 +24,9 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
- 
-  `Name` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Nom` varchar(255) DEFAULT NULL,
+  `Prenom` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
  
   PRIMARY KEY (`id`)
@@ -36,15 +36,15 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `card` (`id`, `Name`, `password`) VALUES
-(1, 'SAMI','abcdef'),
-(2, 'Koula','dhijk'),
-(3, 'Ahmed', 'dcmoe'),
-(4, 'Seraphin','dlorio'),
-(5, 'Julien', 'abbbbb'),
-(6, 'Nicolas', 'ccccccc'),
-(7, 'Amine','dededede'),
-(8, 'Abed' , '123456'),
+INSERT INTO `card` (`id`, `Nom`,`Prenom`, `password`) VALUES
+(1, 'SAMI','SAMI','abcdef'),
+(2, 'Koula','Koula','dhijk'),
+(3, 'Ahmed','Ahmed', 'dcmoe'),
+(4, 'Seraphin','Seraphin','dlorio'),
+(5, 'Julien','Julien', 'abbbbb'),
+(6, 'Nicolas','Nicolas', 'ccccccc'),
+(7, 'Amine','Amine','dededede'),
+(8, 'Abed' ,'Abed', '123456'),
 
 
 
