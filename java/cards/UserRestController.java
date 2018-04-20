@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cpe.springboot.user.model.User;
 
-//On précise que cette classe est un controleur rest. Spring va automatiquement garder la liste de ses
-//methodes anotées par @RequestMapping ainsi que les URL qu'elles pointent pour les éxécuter si l'url
-//demandée correspond
+//On prÃ©cise que cette classe est un controleur rest. Spring va automatiquement garder la liste de ses
+//methodes anotÃ©es par @RequestMapping ainsi que les URL qu'elles pointent pour les Ã©xÃ©cuter si l'url
+//demandÃ©e correspond
 @RestController
 public class UserRestController {
 	
-	// On délègue à Spring la gestion de cet attribut, notament sa construction ainsi que la gestion de
+	// On dÃ©lÃ¨gue Ã  Spring la gestion de cet attribut, notament sa construction ainsi que la gestion de
     // ses propres injections
 	@Autowired
 	private UserService UserService;
 	
-	// L'anotation @RequestMapping permet d'indiquer quelle url devra être demandée pour que l'on éxécute
-    // cette méthode
+	// L'anotation @RequestMapping permet d'indiquer quelle url devra Ãªtre demandÃ©e pour que l'on Ã©xÃ©cute
+    // cette mÃ©thode
 	@RequestMapping("/test")
 	private int test() {
 		return 2+4;
@@ -35,14 +35,14 @@ public class UserRestController {
 
 	}
 	
-	//l'annotation est utilisée pour mapper les requêtes Web aux méthodes Spring Controller.
+	//l'annotation est utilisÃ©e pour mapper les requÃªtes Web aux mÃ©thodes Spring Controller.
 	@RequestMapping("/users/{id}")
 	private User getUser(@PathVariable String id) {
 		return UserService.getUser(id);
 
 	}
-	// On ajoute à @RequestMapping que l'url de la requête doit être /users et on précise qu'elle doit
-    // être de type post
+	// On ajoute Ã  @RequestMapping que l'url de la requÃªte doit Ãªtre /users et on prÃ©cise qu'elle doit
+    // Ãªtre de type post
 	@RequestMapping(method=RequestMethod.POST,value="/users")
 	public void addUser(@RequestBody User user) {
 		UserService.addUser(user);
@@ -63,7 +63,7 @@ public class UserRestController {
 	private List<User> getAllCourses(@PathVariable String name) {
 		return UserService.getUserByName(name);
 	}*/
-	//Cette méthode permet de savoir si le solde est suffisant ou pas
+	//Cette mÃ©thode permet de savoir si le solde est suffisant ou pas
 	@RequestMapping("/users/{id}/{solde}")
 	public Boolean soldeSuffisant(@PathVariable String id, @PathVariable int solde) {
 		User user=UserService.getUser(id); 
@@ -73,7 +73,7 @@ public class UserRestController {
 				}
 		return retour; 
 	}
-	// cette méthode permet d'affirmer si l'utilisateur existe dans la base ou pas
+	// cette mÃ©thode permet d'affirmer si l'utilisateur existe dans la base ou pas
 	@RequestMapping("users/{id}/{id}")
 	public Boolean findUser(@PathVariable String id) {
 		Boolean retour=False;
@@ -86,7 +86,7 @@ public class UserRestController {
 			}
 		return retour;
 	}
-	// Cette méthode permet de mettre à jour le solde de l'utilisateur
+	// Cette mÃ©thode permet de mettre Ã  jour le solde de l'utilisateur
 	@RequestMapping("users/{id}/{info}")
 	public void MiseAJourSolde(@Pathvariable String id, @Pathvariable String info){
 		User user=UserService.getUser(id); 
@@ -96,20 +96,20 @@ public class UserRestController {
 			solde-=prix;
 			user.setsolde(solde);
 		}
-		else if (boolean.equals('0')){ // O: vente
+		else if (info.equals('0')){ // O: vente
 			solde+=prix;
 			user.setsolde(solde);
 		}		
 			
 	}
-	// Cette méthode permet de faire un virement entre deux compte d'utilisateur
+	// Cette mÃ©thode permet de faire un virement entre deux compte d'utilisateur
 	@RequestMapping("users/{id1}/{id2}/{montant}")
 	public void VirementMontant(@Pathvariable String id1,@Pathvariable String id1, @Pathvariable int montant,){
 		Boolean retour=False;
-		//les utilisateurs qui correspondent à id1 et id2
+		//les utilisateurs qui correspondent Ã  id1 et id2
 		User user1=UserService.getUser(id1);
 		User user2=UserService.getUser(id2); 
-		// on recupère leurs soldes
+		// on recupÃ¨re leurs soldes
 		int NewSolde1=user1.getsolde();
 		int NewSolde2=user2.getsolde();
 		// on effectue le virement
