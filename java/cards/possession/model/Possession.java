@@ -10,10 +10,18 @@ public class Possession {
 	@EmbeddedId
 	/**
 	 * Appel de l'identity d'une possession qui possède 
-	 * un idCard et un idUser.
+	 * un idcard et un iduser.
 	 */
 	private PossessionIdentity possessionIdentity;
 	
+	public PossessionIdentity getPossessionIdentity() {
+		return possessionIdentity;
+	}
+
+	public void setPossessionIdentity(PossessionIdentity possessionIdentity) {
+		this.possessionIdentity = possessionIdentity;
+	}
+
 	/**
 	 * Corresspond au prix d'une carte.
 	 */
@@ -40,16 +48,16 @@ public class Possession {
 	/**
 	 * Constructeur d'une possession avec tous les paramètres dont
 	 * il a besion.
-	 * @param id_card
-	 * @param id_user
+	 * @param idcard
+	 * @param iduser
 	 * @param price
 	 * @param energyCard
 	 * @param lastUsed
 	 */
-	public Possession(@NotNull Integer id_card, @NotNull Integer id_user, @NotNull Integer price, @NotNull Integer energyCard, @NotNull Integer lastUsed)
+	public Possession(@NotNull Integer idcard, @NotNull Integer iduser, @NotNull Integer price, @NotNull Integer energyCard, @NotNull Integer lastUsed)
 	{
 		super();
-		this.possessionIdentity = new PossessionIdentity(id_card, id_user);
+		this.possessionIdentity = new PossessionIdentity(idcard, iduser);
 		this.setPrice(price);
 		this.setEnergyCard(energyCard);
 		this.setLastUsed(lastUsed);
@@ -95,5 +103,9 @@ public class Possession {
 	 */
 	public void setLastUsed(Integer lastUsed) {
 		this.lastUsed = lastUsed;
-	}	
+	}
+	
+	
+	
+	
 }
