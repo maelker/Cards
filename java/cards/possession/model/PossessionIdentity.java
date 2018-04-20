@@ -8,38 +8,36 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class PossessionIdentity implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
 	@NotNull
-	private Integer id_card;
+	private Integer idcard;
 	
 	@NotNull
-	private Integer id_user;
+	private Integer iduser;
 	
 	public PossessionIdentity()
 	{
 		
 	}
 
-	public PossessionIdentity(@NotNull Integer id_card, @NotNull Integer id_user) {
+	public PossessionIdentity(@NotNull Integer idcard, @NotNull Integer iduser) {
 		super();
-		this.id_card = id_card;
-		this.id_user = id_user;
+		this.idcard = idcard;
+		this.iduser = iduser;
 	}
 
-	public Integer getId_card() {
-		return id_card;
+	public Integer getidcard() {
+		return idcard;
 	}
 
-	public void setId_card(Integer id_card) {
-		this.id_card = id_card;
+	public void setidcard(Integer idcard) {
+		this.idcard = idcard;
 	}
 
-	public Integer getId_user() {
-		return id_user;
+	public Integer getiduser() {
+		return iduser;
 	}
 
-	public void setId_user(Integer id_user) {
-		this.id_user = id_user;
+	public void setiduser(Integer iduser) {
+		this.iduser = iduser;
 	}
 }
