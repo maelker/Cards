@@ -11,6 +11,7 @@ import java.util.ListIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cards.possession.model.Possession;
 import cards.possession.model.PossessionIdentity;
 
 
@@ -21,6 +22,13 @@ public class PossessionService{
 	@Autowired
 	private PossessionRepository PossessionRepository;
 	
+	/**
+	 * Cette fonction permet de chercher les informations concernant
+	 * la carte possédant l'id passé en paramètres et de retourner 
+	 * tous ces paramètres.
+	 * @param idcard
+	 * @return Un json avec toutes les informations de la carte.
+	 */
 	public String byidcard(int idcard) {
 		String retour = null;
 		
@@ -61,8 +69,28 @@ public class PossessionService{
 		
 		return retour;
 	}
-	
+	/*
 	public String byiduser(int iduser) {
+		
+		
+		List<Integer> tabidcard = PossessionRepository.findCards(iduser);
+
+		//System.out.println(tabidcard);
+		String tabInfoCards="";
+		
+		for (int i = 0; i < tabidcard.size(); i ++) {
+		tabInfoCards += byidcard(tabidcard.get(i));
+		}
+		
+		// Search SQL [ [iduser1,idcard1], [iduser2,idcard2], ...] 
+		//			  => [price1, price2, ...]
+		
+		// Make array [ [allInfoCard1,price1], [allInfoCard2,price2], ...]
+		
+		return tabInfoCards;
+	}*/
+	
+public String byiduser(int iduser) {
 		
 		StringBuilder retour = new StringBuilder();
 		retour.append("[");
@@ -89,15 +117,40 @@ public class PossessionService{
 		return retour.toString();
 	}
 	
+	
+	public String haveCard(int iduser, int idcard) {
+		String ret="true";
+		List<Integer> tabidcar=PossessionRepository.haveCard(iduser, idcard);
+		System.out.println(tabidcar);
+		if (tabidcar.isEmpty()) ret="false";
+				
+		return ret;
+	}
+	
+	
+	
 	public String onMarket(int iduser) {
 
 		StringBuilder retour = new StringBuilder();
 		retour.append("[");
+		System.out.println("salut"+iduser);
+		List<Possession> idCardUser = PossessionRepository.findonmarket(iduser);
 		
-		List<PossessionIdentity> idCardUser = PossessionRepository.findonmarket(iduser);
+	//	PossessionIdentity poss=idCardUser.get(0).getPossessionIdentity();
+		
+		//System.out.println("salut"+idCardUser);
+		/*System.out.println("salut"+idCardUser.get(0));
+		String tabInfoCards="";
+		
+		for (int i = 0; i < idCardUser.size(); i ++) {
+		tabInfoCards += idCardUser.get(i);
+		System.out.println("salut"+idCardUser);
+		System.out.println(idCardUser.get(i));
+
+		}*/
 		//  => [ [idcard1, iduser1] , [idcard2, iduser2] , ... ]
+		/*
 		ListIterator<PossessionIdentity> iterator = idCardUser.listIterator();
-		
 		for ( int i = 0; i < idCardUser.size(); i++) {
 			String infoCard = byidcard(idCardUser.get(i).getidcard());
 			
@@ -116,19 +169,30 @@ public class PossessionService{
 			
 			iterator.next();
 		}
-		
+		System.out.println("fin"+retour);
+
 		// Make array [ [allInfoCard1,iduser1,price1], [allInfoCard2,iduser2,price2], ...]
 		
-		
-		return retour.toString();
+		*/
+		return "yes";
 	}
 	
-	public void setPrice(int iduser, int idcard, int price) {
+
+	public String setPrice(int iduser, int idcard, int price) {
+		String ret="true";
+		try {
+		PossessionIdentity possID= new PossessionIdentity(idcard, iduser);
+		Possession pos=PossessionRepository.findOne(possID);
+		PossessionRepository.save(new Possession(idcard, iduser, price, pos.getEnergyCard(), pos.getLastUsed()));
+		}
+		catch(Exception e){
+			ret="false";
+		}
+		//PossessionRepository.setPrice(iduser, idcard, price);
 		
-		PossessionRepository.setPrice(iduser, idcard, price);
-		
+		return ret;
 	}
-	
+/*
 	public void buyCard(int iduser, int idusercard, int idcard, int price) {
 		String retourSolde = null;
 		
@@ -216,5 +280,15 @@ public class PossessionService{
 			System.out.print("buyer doesn't have enough money");
 		}
 	}
+*/
+	public String haveEnergy(int idcard) {
+		
+		String energy=PossessionRepository.haveEnergy(idcard);
+		
+		
+		return energy;
+	}
+
+	
 	
 }
