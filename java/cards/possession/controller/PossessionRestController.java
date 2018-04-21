@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
+
 @RestController
 public class PossessionRestController {
 	
@@ -23,12 +24,15 @@ public class PossessionRestController {
 	 * @return [allInfoCards] Toutes les informations de la
 	 * 			carte avec l'id : idcard.
 	 */
-	@RequestMapping("/possession/idcard")
+	@RequestMapping("/possession/{idcard}")
 	public String byidcard(@PathVariable int idcard){
 		return PossessionService.byidcard(idcard);
 	}
 	
-	
+	@RequestMapping("/test")
+	public String test(){
+		return "ok";
+	}
 	
 	/**
 	 * Cette fonction permet de récupérer toutes les cartes que possède
@@ -38,10 +42,33 @@ public class PossessionRestController {
 	 * 			cartes que possède l'utilisateur avec l'id : iduser
 	 * 			avec leur prix en plus.
 	 */
-	@RequestMapping("/possession/iduser")
+	@RequestMapping("/possession/user/{iduser}")
 	public String byiduser(@PathVariable int iduser) {
 		return PossessionService.byiduser(iduser);
 	}
+	
+	
+	/**
+	 * 
+	 * @param iduser
+	 * @param idcard
+	 * @return true si l'iduser a la carte dans la BD 
+	 */
+	@RequestMapping("/havecard/{iduser}/{idcard}")
+	public String haveCard(@PathVariable int iduser,@PathVariable int idcard) {
+		return PossessionService.haveCard(iduser,idcard);
+	}
+	
+	/**
+	 * 
+	 * @param idcard
+	 * @return energy de la carte
+	 */
+	@RequestMapping("/haveenergy/{idcard}")
+	public String haveEnergy(@PathVariable int idcard) {
+		return PossessionService.haveEnergy(idcard);
+	}
+	
 	
 	
 	/**
@@ -53,7 +80,7 @@ public class PossessionRestController {
 	 * 			l'id : iduser avec l'id de leurs propriétaire //////////////(à voir + nom)
 	 * 			ainsi que leur prix en plus.
 	 */
-	@RequestMapping("/possession/onMarket")
+	@RequestMapping("/onMarket/{iduser}")
 	public String onMarket(@PathVariable int iduser) {
 		return PossessionService.onMarket(iduser);
 	}
@@ -66,10 +93,10 @@ public class PossessionRestController {
 	 * @param price
 	 * @return true si tout s'est réalisée jusqu'au bout, sinon false.
 	 */
-	@RequestMapping("/possession/setPrice")
-	public void setPrice(@PathVariable int iduser, @PathVariable int idcard,
+	@RequestMapping("/possession/setPrice/{iduser}/{idcard}/{price}")
+	public String setPrice(@PathVariable int iduser, @PathVariable int idcard,
 						 @PathVariable int price) {
-		PossessionService.setPrice(iduser, idcard, price);
+		return PossessionService.setPrice(iduser, idcard, price);
 	}
 	
 	/**
@@ -83,11 +110,12 @@ public class PossessionRestController {
 	 * @param price
 	 * @return true si la transaction s'est réalisée jusqu'au bout, sinon false.
 	 */
-	@RequestMapping("/possession/buyCard")
+	/*
+	@RequestMapping("/possession/buyCard/{iduser}/{iduserCard}/{idcard}/{price}")
 	public void buyCard(@PathVariable int iduser, @PathVariable int iduserCard,
 						@PathVariable int idcard, @PathVariable int price) {
 		PossessionService.buyCard(iduser, iduserCard, idcard, price);
-	}
+	}*/
 	
 	
 }
