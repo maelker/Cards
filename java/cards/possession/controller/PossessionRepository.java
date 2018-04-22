@@ -28,14 +28,14 @@ public interface PossessionRepository extends CrudRepository<Possession, Possess
 	
 	
 	@Query(value="SELECT DISTINCT p.idcard, p.iduser FROM possession p WHERE p.iduser NOT IN ( SELECT iduser FROM possession p WHERE p.iduser =:paramiduser OR p.price = -1)", nativeQuery=true)
-    public List<Possession> findonmarket(@Param("paramiduser") Integer iduser);
+    public List<PossessionIdentity> findonmarket(@Param("paramiduser") Integer iduser);
 	
 	
 	/*
 	@Query(value="UPDATE possession p "
-			+ "SET p.iduser = :paramiduser "
+			+ "SET p.iduser =:paramiduser "
 			+ "WHERE p.iduser =:paramidusercard "
-			+ "		AND p.idcard =: paramidcard")
+			+ "		AND p.idcard =:paramidcard")
 	public void changeUserOfCard(@Param("paramidcard") Integer idcard,
 								 @Param("paramidusercard") Integer idusercard,
 								 @Param("paramiduser") Integer iduser);*/

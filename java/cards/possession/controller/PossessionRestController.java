@@ -29,11 +29,7 @@ public class PossessionRestController {
 		return PossessionService.byidcard(idcard);
 	}
 	
-	@RequestMapping("/test")
-	public String test(){
-		return "ok";
-	}
-	
+
 	/**
 	 * Cette fonction permet de récupérer toutes les cartes que possède
 	 * l'utilisateur avec l'id : iduser.
@@ -110,12 +106,12 @@ public class PossessionRestController {
 	 * @param price
 	 * @return true si la transaction s'est réalisée jusqu'au bout, sinon false.
 	 */
-	/*
+	
 	@RequestMapping("/possession/buyCard/{iduser}/{iduserCard}/{idcard}/{price}")
 	public void buyCard(@PathVariable int iduser, @PathVariable int iduserCard,
 						@PathVariable int idcard, @PathVariable int price) {
 		PossessionService.buyCard(iduser, iduserCard, idcard, price);
-	}*/
+	}
 	
 	
 }
