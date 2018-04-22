@@ -134,12 +134,13 @@ public String byiduser(int iduser) {
 		StringBuilder retour = new StringBuilder();
 		retour.append("[");
 		System.out.println("salut"+iduser);
-		List<Possession> idCardUser = PossessionRepository.findonmarket(iduser);
-		
+		List<PossessionIdentity> idCardUser = PossessionRepository.findonmarket(iduser);
+		retour.append(idCardUser.getClass());
+		System.out.println("salut"+retour);
+
 	//	PossessionIdentity poss=idCardUser.get(0).getPossessionIdentity();
 		
-		//System.out.println("salut"+idCardUser);
-		/*System.out.println("salut"+idCardUser.get(0));
+	
 		String tabInfoCards="";
 		
 		for (int i = 0; i < idCardUser.size(); i ++) {
@@ -147,7 +148,7 @@ public String byiduser(int iduser) {
 		System.out.println("salut"+idCardUser);
 		System.out.println(idCardUser.get(i));
 
-		}*/
+		}
 		//  => [ [idcard1, iduser1] , [idcard2, iduser2] , ... ]
 		/*
 		ListIterator<PossessionIdentity> iterator = idCardUser.listIterator();
@@ -192,7 +193,7 @@ public String byiduser(int iduser) {
 		
 		return ret;
 	}
-/*
+
 	public void buyCard(int iduser, int idusercard, int idcard, int price) {
 		String retourSolde = null;
 		
@@ -269,7 +270,11 @@ public String byiduser(int iduser) {
 				boolean resultTransaction = Boolean.parseBoolean(retourTransaction);
 				
 				if (resultTransaction) {
-					PossessionRepository.changeUserOfCard(idcard, idusercard, iduser);
+				//	PossessionRepository.changeUserOfCard(idcard, idusercard, iduser); marche pas
+					
+					PossessionIdentity possID= new PossessionIdentity(idcard, iduser);
+					Possession pos=PossessionRepository.findOne(possID);
+					PossessionRepository.save(new Possession(idcard, idusercard, pos.getPrice(), pos.getEnergyCard(), pos.getLastUsed()));
 				} else {
 					System.out.print("Transaction error");
 				}
@@ -280,7 +285,7 @@ public String byiduser(int iduser) {
 			System.out.print("buyer doesn't have enough money");
 		}
 	}
-*/
+
 	public String haveEnergy(int idcard) {
 		
 		String energy=PossessionRepository.haveEnergy(idcard);
