@@ -35,7 +35,7 @@ import org.springframework.http.ResponseEntity;
 @RestController
 public class InterfaceController {
 	
-static final String URL_CardBuy = "http://localhost:8080/cardBuy.html";
+static  String URL_CardBuy = "http://localhost:8080/cardBuy.html";
 static  String URL_CARD = "http://localhost:8080/";
 static  String URL_USER = "http://localhost:8080/users";
 static  String URL_ROOM = "http://localhost:8080/room";
@@ -52,6 +52,22 @@ public String getCardBuy() {
 public String getCards() {
    RestTemplate restTemplate = new RestTemplate();
   String result = restTemplate.getForObject(URL_CARD+"cardList.html", String.class);
+        return result;
+
+}
+
+@RequestMapping(value = "/user", method = RequestMethod.GET)
+public String getUser() {
+   RestTemplate restTemplate = new RestTemplate();
+  String result = restTemplate.getForObject(URL_USER, String.class);
+        return result;
+
+}
+
+@RequestMapping(value = "/room", method = RequestMethod.GET)
+public String getRoom() {
+   RestTemplate restTemplate = new RestTemplate();
+  String result = restTemplate.getForObject(URL_USER, String.class);
         return result;
 
 }
