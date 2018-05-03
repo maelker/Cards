@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cpe.springboot.user.model.User;
 
 
-//On précise que cette classe est un composant qui représente un service 
+//On prÃ©cise que cette classe est un composant qui reprÃ©sente un service 
 @Service
 public class UserService {
 
@@ -17,7 +17,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public List<User> getAllUsers() {
-        //la méthode findAll retourne un iterable donc on doit le parcourir pour remplir une liste
+        //la mÃ©thode findAll retourne un iterable donc on doit le parcourir pour remplir une liste
         //C'est ensuite cette liste que l'on va retourner
 		List<User> users = new ArrayList<>();
 		userRepository.findAll().forEach(users::add); 
