@@ -4,23 +4,23 @@ package Model;
 	import javax.persistence.GenerationType;
 	import javax.persistence.Id;
 
-	//On ajoute l'anotation @Entity pour indiquer que cette classe représente une entité
-	//Elle sera donc liée à une table dans la base de donnée et chacune de ses instances représentera
+	//On ajoute l'anotation @Entity pour indiquer que cette classe reprÃ©sente une entitÃ©
+	//Elle sera donc liÃ©e Ã  une table dans la base de donnÃ©e et chacune de ses instances reprÃ©sentera
 	//une ligne de cette table.
-	@Entity //permet d'encapsuler les données d'une occurrence d'une ou plusieurs tables
+	@Entity //permet d'encapsuler les donnÃ©es d'une occurrence d'une ou plusieurs tables
 	public class User {
 		
-		// On définit l'attribut id comme étant la clé primaire de cette entité
-	    // De plus, on délègue à ObjectDB l'initialisation de cet attribut
+		// On dÃ©finit l'attribut id comme Ã©tant la clÃ© primaire de cette entitÃ©
+	    // De plus, on dÃ©lÃ¨gue Ã  ObjectDB l'initialisation de cet attribut
 		@Id 
-		@GeneratedValue(strategy=GenerationType.AUTO) //permet de mapper une clé primaire sur un champ unique.
+		@GeneratedValue(strategy=GenerationType.AUTO) //permet de mapper une clÃ© primaire sur un champ unique.
 	    private Integer id;
 		private String name;
 		private String surname;
 		private String password;
 		private Integer solde;
 
-		//On créé un constructeur vide qui est obligatoire pour une entité
+		//On crÃ©Ã© un constructeur vide qui est obligatoire pour une entitÃ©
 		public void user() {
 			this.name = "";
 			this.surname = "";
@@ -36,7 +36,7 @@ package Model;
 		}
 
 
-		public String getName() { // récuperer le nom
+		public String getName() { // rÃ©cuperer le nom
 			return name;
 		}
 
@@ -44,7 +44,7 @@ package Model;
 			this.name = name;	
 		}
 		
-		public String getSurname() { // //récuperer le prenom
+		public String getSurname() { // //rÃ©cuperer le prenom
 			return surname;
 		}
 
@@ -52,7 +52,7 @@ package Model;
 			this.surname = surname;	
 		}
 
-		public Integer getId() { //récuperer id
+		public Integer getId() { //rÃ©cuperer id
 			return id;
 		}
 
@@ -60,17 +60,17 @@ package Model;
 			this.id = id;
 		}
 		
-		public String getPassword() { //récuperer id
+		public String getPassword() { //rÃ©cuperer id
 			return password;
 		}
 
 		public void setPassword(String password) { // insertion id
 			this.password = password;
 		}
-		public int getsolde() { // récuperer le solde
+		public int getsolde() { // rÃ©cuperer le solde
 			return solde;
 		}
-		public void setsolde(int solde) { // récuperer le solde
+		public void setsolde(int solde) { // rÃ©cuperer le solde
 			this.solde=solde;
 		}
 
