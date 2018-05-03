@@ -1,4 +1,4 @@
-package cards.card.controller;
+package cards.card.service;
 
 import java.util.ArrayList;
 import java.util.List;
